@@ -20,6 +20,7 @@ pipeline {
                 '''
             }
         }
+
         stage('Test') {
             agent {
                 docker {
@@ -27,10 +28,11 @@ pipeline {
                     reuseNode true
                 }
             }
+
             steps {
                 sh '''
-                     echo "Verifico build/index.html"
                     test -f build/index.html
+                    npm test
                 '''
             }
         }
